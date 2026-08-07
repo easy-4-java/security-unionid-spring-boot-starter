@@ -21,6 +21,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import org.springframework.http.HttpMethod;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.boot.biz.SpringSecurityBizMessageSource;
@@ -28,7 +29,7 @@ import org.springframework.security.boot.biz.authentication.PostOnlyAuthenticati
 import org.springframework.security.boot.utils.WebUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -48,7 +49,7 @@ public class UnionIDAuthenticationProcessingFilter extends PostOnlyAuthenticatio
 	private String tokenParameter = SPRING_SECURITY_FORM_TOKEN_KEY;
 	
     public UnionIDAuthenticationProcessingFilter(ObjectMapper objectMapper) {
-    	super(new AntPathRequestMatcher("/login/unionid", "POST"));
+		super(PathPatternRequestMatcher.pathPattern(HttpMethod.POST, "/login/unionid"));
     	this.objectMapper = objectMapper;
     }
 

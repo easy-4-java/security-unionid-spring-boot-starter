@@ -53,7 +53,7 @@ public class UnionIDAuthenticationToken extends AbstractAuthenticationToken {
 	private String appVersion;
 
     public UnionIDAuthenticationToken(Object principal) {
-        super(null);
+        super((Collection<? extends GrantedAuthority>) null);
         this.principal = principal;
         setAuthenticated(false);
     }
