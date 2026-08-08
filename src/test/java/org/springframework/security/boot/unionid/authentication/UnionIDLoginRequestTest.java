@@ -30,9 +30,32 @@ import static org.assertj.core.api.Assertions.assertThat;
 class UnionIDLoginRequestTest {
 
     @Test
-    @DisplayName("Instance can be created via constructor")
-    void testInstantiation() {
-        UnionIDLoginRequest instance = new UnionIDLoginRequest(null);
-        assertThat(instance).isNotNull();
+    @DisplayName("Constructor populates all three fields")
+    void testConstructor() {
+        UnionIDLoginRequest request = new UnionIDLoginRequest("wechat", "uid-1", "token-1");
+        assertThat(request.getPlatform()).isEqualTo("wechat");
+        assertThat(request.getUnionid()).isEqualTo("uid-1");
+        assertThat(request.getToken()).isEqualTo("token-1");
+    }
+
+    @Test
+    @DisplayName("Constructor accepts null values")
+    void testConstructorNulls() {
+        UnionIDLoginRequest request = new UnionIDLoginRequest(null, null, null);
+        assertThat(request.getPlatform()).isNull();
+        assertThat(request.getUnionid()).isNull();
+        assertThat(request.getToken()).isNull();
+    }
+
+    @Test
+    @DisplayName("Setters update fields")
+    void testSetters() {
+        UnionIDLoginRequest request = new UnionIDLoginRequest("a", "b", "c");
+        request.setPlatform("alipay");
+        request.setUnionid("uid-2");
+        request.setToken("token-2");
+        assertThat(request.getPlatform()).isEqualTo("alipay");
+        assertThat(request.getUnionid()).isEqualTo("uid-2");
+        assertThat(request.getToken()).isEqualTo("token-2");
     }
 }

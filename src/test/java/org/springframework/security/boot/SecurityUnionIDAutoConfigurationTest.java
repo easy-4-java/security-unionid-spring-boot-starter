@@ -18,8 +18,11 @@ package org.springframework.security.boot;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;
+import org.springframework.security.boot.biz.userdetails.JwtPayloadRepository;
+import org.springframework.security.boot.biz.userdetails.UserDetailsServiceAdapter;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 
 /**
  * Unit tests for {{ @link SecurityUnionIDAutoConfiguration }}.
@@ -33,7 +36,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("SecurityUnionIDAutoConfiguration Tests")
 class SecurityUnionIDAutoConfigurationTest {
 
-    private final ApplicationContextRunner runner = new ApplicationContextRunner();
+    private final ApplicationContextRunner runner = new ApplicationContextRunner()
+            .withBean(JwtPayloadRepository.class, () -> mock(JwtPayloadRepository.class))
+            .withBean(UserDetailsServiceAdapter.class, () -> mock(UserDetailsServiceAdapter.class));
 
     @Test
     @DisplayName("Auto-configuration class can be instantiated")
