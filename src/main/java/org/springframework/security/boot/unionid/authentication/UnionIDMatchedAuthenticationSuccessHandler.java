@@ -3,9 +3,9 @@ package org.springframework.security.boot.unionid.authentication;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.http.HttpStatus;
@@ -25,7 +25,7 @@ import com.alibaba.fastjson.JSONObject;
 
 /**
  * UnionID 认证 (authentication)成功回调器：讲认证信息写回前端
- * @author 		： <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author [@Loong Wan](https://github.com/loong10k)
  */
 public class UnionIDMatchedAuthenticationSuccessHandler implements MatchedAuthenticationSuccessHandler {
    
