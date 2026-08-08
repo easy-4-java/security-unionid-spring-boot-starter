@@ -25,7 +25,7 @@ import com.alibaba.fastjson.JSONObject;
 
 /**
  * UnionID 认证 (authentication)成功回调器：讲认证信息写回前端
- * @author 		： <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author [@Loong Wan](https://github.com/loong10k)
  */
 public class UnionIDMatchedAuthenticationSuccessHandler implements MatchedAuthenticationSuccessHandler {
    
