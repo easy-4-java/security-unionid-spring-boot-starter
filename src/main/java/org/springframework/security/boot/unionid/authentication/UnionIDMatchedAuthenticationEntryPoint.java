@@ -20,6 +20,13 @@ import org.springframework.security.boot.unionid.exception.AuthenticationUnionID
 import org.springframework.security.boot.utils.SubjectUtils;
 import org.springframework.security.core.AuthenticationException;
 
+/**
+ * Authentication entry point for UnionID authentication.
+ * <p>Handles {@link AuthenticationUnionIDNotFoundException} exceptions.</p>
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 public class UnionIDMatchedAuthenticationEntryPoint implements MatchedAuthenticationEntryPoint {
 	
 	@Override
