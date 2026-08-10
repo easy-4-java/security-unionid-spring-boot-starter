@@ -17,7 +17,7 @@ import org.springframework.security.boot.unionid.authentication.UnionIDMatchedAu
  * Auto-configuration for UnionID-based security authentication.
  * <p>Registers UnionID authentication provider, entry point, success and failure handlers.</p>
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @Configuration
