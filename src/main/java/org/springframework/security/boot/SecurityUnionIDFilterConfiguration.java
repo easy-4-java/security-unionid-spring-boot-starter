@@ -37,6 +37,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @AutoConfigureBefore(name = { 
 	"org.springframework.boot.security.autoconfigure.web.servlet.ServletWebSecurityAutoConfiguration"
 })
+/**
+ * <p>Configuration properties.</p>
+ *
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 @ConditionalOnWebApplication
 @ConditionalOnProperty(prefix = SecurityUnionIDProperties.PREFIX, value = "enabled", havingValue = "true")
 @EnableConfigurationProperties({ SecurityUnionIDProperties.class, SecurityUnionIDAuthcProperties.class, SecurityBizProperties.class })
@@ -92,6 +98,12 @@ public class SecurityUnionIDFilterConfiguration {
 		}
 
 		
+		/**
+		 * authentication Processing Filter.
+		 *
+		 * @return the result
+		 * @throws Exception if an error occurs
+		 */
 		public UnionIDAuthenticationProcessingFilter authenticationProcessingFilter() throws Exception {
 	    	
 			UnionIDAuthenticationProcessingFilter authenticationFilter = new UnionIDAuthenticationProcessingFilter(this.objectMapper);
@@ -116,6 +128,12 @@ public class SecurityUnionIDFilterConfiguration {
 	        return authenticationFilter;
 	    }
 		
+		/**
+		 * configure.
+		 *
+		 * @param http the http
+		 * @throws Exception if an error occurs
+		 */
 		@Override
 		public void configure(HttpSecurity http) throws Exception {
 			
@@ -131,6 +149,12 @@ public class SecurityUnionIDFilterConfiguration {
 	    	super.configure(http);
 		}
 		
+	    /**
+	     * configure.
+	     *
+	     * @param web the web
+	     * @throws Exception if an error occurs
+	     */
 		@Override
 	    public void configure(WebSecurity web) throws Exception {
 	    	super.configure(web);

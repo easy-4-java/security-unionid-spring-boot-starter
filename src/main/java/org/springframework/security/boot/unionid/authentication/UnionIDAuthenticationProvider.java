@@ -14,6 +14,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsChecker;
 import org.springframework.util.Assert;
 
+/**
+ * <p>Provider for Union I D Authentication.</p>
+ *
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class UnionIDAuthenticationProvider implements AuthenticationProvider {
 	
 	protected MessageSourceAccessor messages = SpringSecurityMessageSource.getAccessor();
@@ -21,10 +27,21 @@ public class UnionIDAuthenticationProvider implements AuthenticationProvider {
     private final UserDetailsServiceAdapter userDetailsService;
     private UserDetailsChecker userDetailsChecker = new AccountStatusUserDetailsChecker();
     
+    /**
+     * Constructs a new union i d authentication provider instance.
+     *
+     * @param userDetailsService the user details service
+     */
     public UnionIDAuthenticationProvider(final UserDetailsServiceAdapter userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 
+    /**
+     * Determines whether supports.
+     *
+     * @param authentication the authentication
+     * @return the result
+     */
     @Override
     public boolean supports(Class<?> authentication) {
         return (UnionIDAuthenticationToken.class.isAssignableFrom(authentication));
@@ -72,14 +89,29 @@ public class UnionIDAuthenticationProvider implements AuthenticationProvider {
     }
 
 
+	/**
+	 * Sets the user details checker.
+	 *
+	 * @param userDetailsChecker the user details checker
+	 */
 	public void setUserDetailsChecker(UserDetailsChecker userDetailsChecker) {
 		this.userDetailsChecker = userDetailsChecker;
 	}
 
+	/**
+	 * Returns the user details checker.
+	 *
+	 * @return the user details checker
+	 */
 	public UserDetailsChecker getUserDetailsChecker() {
 		return userDetailsChecker;
 	}
 	
+	/**
+	 * Returns the user details service.
+	 *
+	 * @return the user details service
+	 */
 	public UserDetailsServiceAdapter getUserDetailsService() {
 		return userDetailsService;
 	}

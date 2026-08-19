@@ -29,6 +29,12 @@ import org.springframework.security.core.AuthenticationException;
  */
 public class UnionIDMatchedAuthenticationEntryPoint implements MatchedAuthenticationEntryPoint {
 	
+	/**
+	 * Determines whether supports.
+	 *
+	 * @param e the e
+	 * @return the result
+	 */
 	@Override
 	public boolean supports(AuthenticationException e) {
 		return SubjectUtils.isAssignableFrom(e.getClass(), AuthenticationUnionIDNotFoundException.class);

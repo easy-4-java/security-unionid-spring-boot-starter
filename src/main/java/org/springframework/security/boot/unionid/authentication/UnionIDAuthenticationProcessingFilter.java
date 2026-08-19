@@ -35,24 +35,57 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * <p>Filter for Union I D Authentication Processing.</p>
+ *
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class UnionIDAuthenticationProcessingFilter extends PostOnlyAuthenticationProcessingFilter {
 
 	protected MessageSourceAccessor messages = SpringSecurityBizMessageSource.getAccessor();
 	protected ObjectMapper objectMapper = new ObjectMapper();
 	
+	/**
+	 * Constructs a new union i d authentication processing filter instance.
+	 *
+	 * @param objectMapper the object mapper
+	 */
 	public static final String SPRING_SECURITY_FORM_PLATFORM_KEY = "platform";
+	/**
+	 * Constructs a new union i d authentication processing filter instance.
+	 *
+	 * @param objectMapper the object mapper
+	 */
 	public static final String SPRING_SECURITY_FORM_UNIONID_KEY = "unionid";
+	/**
+	 * Constructs a new union i d authentication processing filter instance.
+	 *
+	 * @param objectMapper the object mapper
+	 */
 	public static final String SPRING_SECURITY_FORM_TOKEN_KEY = "token";
 	
 	private String platformParameter = SPRING_SECURITY_FORM_PLATFORM_KEY;
 	private String unionidParameter = SPRING_SECURITY_FORM_UNIONID_KEY;
 	private String tokenParameter = SPRING_SECURITY_FORM_TOKEN_KEY;
 	
+    /**
+     * Constructs a new union i d authentication processing filter instance.
+     *
+     * @param objectMapper the object mapper
+     */
     public UnionIDAuthenticationProcessingFilter(ObjectMapper objectMapper) {
 		super(PathPatternRequestMatcher.pathPattern(HttpMethod.POST, "/login/unionid"));
     	this.objectMapper = objectMapper;
     }
 
+    /**
+     * do Attempt Authentication.
+     *
+     * @param request the request
+     * @param response the response
+     * @return the result
+     */
     @Override
     public Authentication doAttemptAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws AuthenticationException, IOException, ServletException {
@@ -84,6 +117,13 @@ public class UnionIDAuthenticationProcessingFilter extends PostOnlyAuthenticatio
 
     }
     
+	/**
+	 * authentication Token.
+	 *
+	 * @param request the request
+	 * @param loginRequest the login request
+	 * @return the result
+	 */
 	protected AbstractAuthenticationToken authenticationToken(HttpServletRequest request, UnionIDLoginRequest loginRequest) {
 		UnionIDAuthenticationToken token = new UnionIDAuthenticationToken( loginRequest);
 		token.setAppId(this.obtainAppId(request));
@@ -92,14 +132,32 @@ public class UnionIDAuthenticationProcessingFilter extends PostOnlyAuthenticatio
 		return token;
 	}
 
+	/**
+	 * obtain Platform.
+	 *
+	 * @param request the request
+	 * @return the result
+	 */
 	protected String obtainPlatform(HttpServletRequest request) {
 		return request.getParameter(this.getPlatformParameter());
 	}
 
+	/**
+	 * obtain Unionid.
+	 *
+	 * @param request the request
+	 * @return the result
+	 */
 	protected String obtainUnionid(HttpServletRequest request) {
 		return request.getParameter(this.getUnionidParameter());
 	}
 	
+	/**
+	 * obtain Token.
+	 *
+	 * @param request the request
+	 * @return the result
+	 */
 	protected String obtainToken(HttpServletRequest request) {
 		return request.getParameter(this.getTokenParameter());
 	}
@@ -118,26 +176,56 @@ public class UnionIDAuthenticationProcessingFilter extends PostOnlyAuthenticatio
 	}
 	
 
+	/**
+	 * Returns the platform parameter.
+	 *
+	 * @return the platform parameter
+	 */
 	public String getPlatformParameter() {
 		return platformParameter;
 	}
 
+	/**
+	 * Sets the platform parameter.
+	 *
+	 * @param platformParameter the platform parameter
+	 */
 	public void setPlatformParameter(String platformParameter) {
 		this.platformParameter = platformParameter;
 	}
 
+	/**
+	 * Returns the unionid parameter.
+	 *
+	 * @return the unionid parameter
+	 */
 	public String getUnionidParameter() {
 		return unionidParameter;
 	}
 
+	/**
+	 * Sets the unionid parameter.
+	 *
+	 * @param unionidParameter the unionid parameter
+	 */
 	public void setUnionidParameter(String unionidParameter) {
 		this.unionidParameter = unionidParameter;
 	}
 
+	/**
+	 * Returns the token parameter.
+	 *
+	 * @return the token parameter
+	 */
 	public String getTokenParameter() {
 		return tokenParameter;
 	}
 
+	/**
+	 * Sets the token parameter.
+	 *
+	 * @param tokenParameter the token parameter
+	 */
 	public void setTokenParameter(String tokenParameter) {
 		this.tokenParameter = tokenParameter;
 	}
